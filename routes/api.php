@@ -22,6 +22,7 @@ Route::post('register', [LoginController::class, 'register']);
 Route::post('login', [LoginController::class, 'login']);
 
 Route::get('profil', [LoginController::class, 'profil']);
+Route::post('profile', [LoginController::class, 'profile']);
 Route::post('profil', [LoginController::class, 'profil_update']);
 
 

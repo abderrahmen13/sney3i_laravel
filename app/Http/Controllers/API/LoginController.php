@@ -114,13 +114,51 @@ class LoginController extends Controller
     public function profil(Request $request)
     {
         if ($request->user_type == 'client') {
-            $user = client::where('id', $request->id)->first();
+			if($request->type == "email") {
+				$user = client::where('email', $request->id)->first();
+			} else {
+				$user = client::where('id', $request->id)->first();
+			}
             return response()->json([
                 'success' => true,
                 'user' => $user
             ], 200);
         } else if ($request->user_type == 'professionel') {
-            $user = proffessionel::where('id', $request->id)->first();
+			if($request->type == "email") {
+				$user = proffessionel::where('email', $request->id)->first();
+			} else {
+				$user = proffessionel::where('id', $request->id)->first();
+			}
+            return response()->json([
+                'success' => true,
+                'user' => $user
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'no user type provided'
+            ], 200);
+        }
+    }
+	
+	public function profile(Request $request)
+    {
+        if ($request->user_type == 'client') {
+			if($request->type == "email") {
+				$user = client::where('email', $request->id)->first();
+			} else {
+				$user = client::where('id', $request->id)->first();
+			}
+            return response()->json([
+                'success' => true,
+                'user' => $user
+            ], 200);
+        } else if ($request->user_type == 'professionel') {
+			if($request->type == "email") {
+				$user = proffessionel::where('email', $request->id)->first();
+			} else {
+				$user = proffessionel::where('id', $request->id)->first();
+			}
             return response()->json([
                 'success' => true,
                 'user' => $user
