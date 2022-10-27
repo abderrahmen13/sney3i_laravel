@@ -99,8 +99,9 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Users Chart</h4>
-                        <div id="first_chart" style="height: 300px;"></div>
-
+                        <div>
+                          {!! $firstChart->container() !!}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -109,8 +110,9 @@
             <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Profession Chart</h4>
-                        <div id="second_chart" style="height: 300px;"></div>
-
+                        <div>
+                          {!! $secondChart->container() !!}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -121,51 +123,19 @@
 
   </div>
 </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.0.2/echarts-en.min.js" charset="utf-8"></script>
+
     <!-- Charting library -->
-    <script src="/js/echarts.min.js"></script>
-    
+    <!-- <script src="/js/echarts.min.js"></script> -->
     <!-- Chartisan -->
-    <script src="/js/chartisan_echarts.js"></script>
-    <!-- Your application script -->
-    <script>
-      
-     
-
-        const chart1 = new Chartisan({
-            el: '#first_chart',
-            url: "@chart('first_chart')",
-            hooks: new ChartisanHooks()
-                .legend()
-                .colors()
-                .tooltip()
-                .axis(false)
-
-                .datasets([{
-                        type: 'bar',
-                        radius: ['40%', '60%']
-                    },
-
-                ]),
-        })
-        const chart2 = new Chartisan({
-            el: '#second_chart',
-            url: "@chart('second_chart')",
-            hooks: new ChartisanHooks()
-                .legend()
-                .colors()
-                .tooltip()
-                .axis(false)
-
-                .datasets([{
-                        type: 'bar',
-                        radius: ['40%', '60%']
-                    },
-
-                ]),
-        })
-
-
-
-      
-    </script>
+    <!-- <script src="/js/chartisan_echarts.js"></script> -->
+    {{-- ChartScript --}}
+    @if($firstChart)
+    {!! $firstChart->script() !!}
+    @endif
+    @if($secondChart)
+    {!! $secondChart->script() !!}
+    @endif
 @endsection
