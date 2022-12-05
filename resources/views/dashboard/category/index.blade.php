@@ -83,7 +83,7 @@
                                         </a>
                                     </td>
                                     <td class="">
-                                        <img src="{{ url('icon/'.$item->icon) }}" style="height: 70px; width: 70px;" />
+                                        <img src="{{ url('public/icon/'.$item->icon) }}" style="height: 70px; width: 70px;" />
                                         {{$item->name}}
                                     </td>
                                     <td class="align-middle text-center"> {{count($item->sub_category_items)}} </td>
@@ -244,7 +244,7 @@
                                 </a>
                             </td>
                             <td class="">
-                                <img src="{{ url('icon/'.$item->icon) }}" style="height: 70px; width: 70px;" />
+                                <img src="{{ url('public/icon/'.$item->icon) }}" style="height: 70px; width: 70px;" />
                                 {{$item->name}}
                             </td>
 

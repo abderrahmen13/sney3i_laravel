@@ -59,7 +59,7 @@ class CategoryController extends Controller
         $cateogry->parent_id = $request->input('category_id');
         if ($request->file('picture')) {
             $file = $request->file('picture');
-            $filename = date('YmdHi');
+            $filename = date('YmdHi').$file->getClientOriginalName();
             $file->move(public_path('icon'), $filename);
             $cateogry->icon = $filename;
         }

@@ -19,7 +19,7 @@ class proffessionel extends Model
     "password",
     "picture",
     "birthday",
-    "phone"];
+    "phone","calls","sms"];
     public function rating()
     {
         return $this->hasMany('App\Models\Rating','proffessionnel_id','id');

@@ -27,6 +27,20 @@ class ProfessionelController extends Controller
             $specialist
         );  
     }
+    
+    public function index2()
+    {
+        $items = proffessionel::where('status','verified')->get();
+        return response()->json(
+           $items, 200);
+    }
+    
+    public function indexAdress($adress)
+    {
+        $items = proffessionel::where('status','verified')->where('adress',$adress)->get();
+        return response()->json(
+           $items, 200);
+    }
 
     public function prof_details($id)
     {
@@ -61,6 +75,15 @@ class ProfessionelController extends Controller
             $favoris
         );
     }
+    
+    public function favori_list_prof($user_id, $prof_id)
+    {
+        $favoris= Favoris::where('client_id', $user_id)->where('proffessionel_id', $prof_id)->with('person')->get();
+
+        return response()->json(
+            $favoris
+        );
+    }
 
     public function add_favori(Request $request)
     {
@@ -79,6 +102,17 @@ class ProfessionelController extends Controller
         where('proffessionel_id' , $request->proffessionel_id )->delete();
         return response()->json(
             'favori removed'
+        );
+    }
+    
+    public function updateProf($id, Request $request)
+    {
+        proffessionel::where('id',$id)->update([
+            'sms' => $request->sms,
+            'calls' => $request->calls
+        ]);
+        return response()->json(
+            'profs updated'
         );
     }
 

@@ -19,4 +19,10 @@ Rating::create($request->all());
         ], 200);
 
     }
+    
+    public function prof_rating($id)
+    {
+        $items = Rating::where('proffessionnel_id', $id)->first();
+        return response()->json($items, 200);
+    }
 }

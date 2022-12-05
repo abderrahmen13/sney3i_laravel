@@ -106,7 +106,7 @@
                                     </td>
 
                                     <td class="">
-                                        <img src="{{ url('proffessionel/'.$item->image) }}" style="height: 70px; width: 70px;" />
+                                        <img src="{{ url('public/proffessionel/'.$item->image) }}" style="height: 70px; width: 70px;" />
                                         {{$item->first_name}} {{$item->last_name}}
                                     </td>
                                     <td class="align-middle text-center">{{$item->gender}}</td>

@@ -18,7 +18,7 @@ class LoginController extends Controller
 {
     public function register(Request $request)
     {
-
+        
         $img = $request->image;
 
         $folderPath = "/proffessionel/";
@@ -27,19 +27,23 @@ class LoginController extends Controller
         $image = str_replace(' ', '+', $image);
         $imageName = uniqid().'.'.'png';
         \File::put(public_path(). '/proffessionel/' . $imageName, base64_decode($image));
+        if($request->image) {
+            $imgg = '/proffessionel/'.$imageName;
+        } else {
+            $imgg = '/icon/default.png';
+        }
       
         if ($request->Role == 'client') {
-
             $request->merge([
                 'password' => hash::make($request->password),
-                'image' =>'/proffessionel/'.$imageName
-            ]);
+                'image' => $imgg
+            ]); 
             $user = client::create($request->all());
             return true;
         } else if ($request->Role == 'professionel') {
             $request->merge([
                 'password' => hash::make($request->password),
-                'image' =>'/proffessionel/'.$imageName
+                'image' => $imgg
             ]);
             Log::emergency($request->all());
 
@@ -140,14 +144,14 @@ class LoginController extends Controller
             ], 200);
         }
     }
-	
-	public function profile(Request $request)
+    
+    public function profile(Request $request)
     {
         if ($request->user_type == 'client') {
 			if($request->type == "email") {
 				$user = client::where('email', $request->id)->first();
 			} else {
-				$user = client::where('id', $request->id)->first();
+				$user = client::where('uid', $request->id)->first();
 			}
             return response()->json([
                 'success' => true,
@@ -157,7 +161,7 @@ class LoginController extends Controller
 			if($request->type == "email") {
 				$user = proffessionel::where('email', $request->id)->first();
 			} else {
-				$user = proffessionel::where('id', $request->id)->first();
+				$user = proffessionel::where('uid', $request->id)->first();
 			}
             return response()->json([
                 'success' => true,
